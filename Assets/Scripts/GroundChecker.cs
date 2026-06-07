@@ -10,10 +10,10 @@ public class GroundChecker : MonoBehaviour
 
     private void Update()
     {
-        CheckGround();
+        UpdateGroundedState();
     }
 
-    private void CheckGround()
+    private void UpdateGroundedState()
     {
         IsGrounded = Physics2D.OverlapCircle(
             _checkPoint.position,

@@ -3,10 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
 {
-    private const string IsRunningParameter = "IsRunning";
-
-    [SerializeField] private PlayerInputReader _inputReader;
-
     private Animator _animator;
 
     private void Awake()
@@ -14,15 +10,8 @@ public class PlayerAnimator : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public void SetRunning(bool isRunning)
     {
-        UpdateAnimation();
-    }
-
-    private void UpdateAnimation()
-    {
-        bool isRunning = _inputReader.HorizontalDirection != 0f;
-
-        _animator.SetBool(IsRunningParameter, isRunning);
+        _animator.SetBool(PlayerAnimatorData.Params.IsRunning, isRunning);
     }
 }

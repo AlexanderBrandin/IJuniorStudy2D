@@ -1,17 +1,18 @@
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class Patroller : MonoBehaviour
 {
+    [SerializeField] private ObjectFlipper _flipper;
     [SerializeField] private Transform _leftPoint;
     [SerializeField] private Transform _rightPoint;
     [SerializeField] private float _speed;
-    [SerializeField] private float _minDistanceToPoint;
 
     private Transform _targetPoint;
 
     private void Start()
     {
         _targetPoint = _rightPoint;
+        _flipper.LookRight();
     }
 
     private void Update()
@@ -27,24 +28,21 @@ public class EnemyPatrol : MonoBehaviour
             _speed * Time.deltaTime
         );
 
-        if (Vector2.Distance(transform.position, _targetPoint.position) <= _minDistanceToPoint)
+        if ((Vector2)transform.position == (Vector2)_targetPoint.position)
             SwitchTargetPoint();
     }
 
     private void SwitchTargetPoint()
     {
         if (_targetPoint == _rightPoint)
+        {
             _targetPoint = _leftPoint;
+            _flipper.LookLeft();
+        }
         else
+        {
             _targetPoint = _rightPoint;
-
-        Flip();
-    }
-
-    private void Flip()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x *= -1f;
-        transform.localScale = scale;
+            _flipper.LookRight();
+        }
     }
 }
