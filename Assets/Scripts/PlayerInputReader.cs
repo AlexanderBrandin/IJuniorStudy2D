@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputReader : MonoBehaviour
 {
     public event Action JumpPressed;
+    public event Action AttackPressed;
 
     public float HorizontalDirection { get; private set; }
 
@@ -12,6 +13,7 @@ public class PlayerInputReader : MonoBehaviour
     {
         ReadMovement();
         ReadJump();
+        ReadAttack();
     }
 
     private void ReadMovement()
@@ -34,5 +36,14 @@ public class PlayerInputReader : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             JumpPressed?.Invoke();
+    }
+
+    private void ReadAttack()
+    {
+        if (Keyboard.current == null)
+            return;
+
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+            AttackPressed?.Invoke();
     }
 }

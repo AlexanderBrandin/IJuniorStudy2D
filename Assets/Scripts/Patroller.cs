@@ -8,6 +8,7 @@ public class Patroller : MonoBehaviour
     [SerializeField] private float _speed;
 
     private Transform _targetPoint;
+    private bool _isActive = true;
 
     private void Start()
     {
@@ -17,7 +18,18 @@ public class Patroller : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        if (_isActive)
+            Move();
+    }
+
+    public void Activate()
+    {
+        _isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        _isActive = false;
     }
 
     private void Move()

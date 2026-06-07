@@ -345,7 +345,12 @@ GameObject:
   - component: {fileID: 368046184}
   - component: {fileID: 368046183}
   - component: {fileID: 368046187}
-  m_Layer: 0
+  - component: {fileID: 368046192}
+  - component: {fileID: 368046191}
+  - component: {fileID: 368046190}
+  - component: {fileID: 368046189}
+  - component: {fileID: 368046188}
+  m_Layer: 6
   m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,6 +532,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc12e3e9c494929a64faac4f568d567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectFlipper
+--- !u!114 &368046188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368046181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b054ab4d713b40a1a151f5662e659f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathHandler
+--- !u!114 &368046189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368046181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871be103fb044113b7dd4ad087411716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
+  _player: {fileID: 1124180963}
+  _playerHealth: {fileID: 1124180965}
+  _detector: {fileID: 368046190}
+  _patroller: {fileID: 368046185}
+  _attacker: {fileID: 368046191}
+  _flipper: {fileID: 368046187}
+  _chaseSpeed: 2
+--- !u!114 &368046190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368046181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f085a224bf47b78f3a1e97660ad959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetector
+  _player: {fileID: 1124180963}
+  _detectionDistance: 1
+--- !u!114 &368046191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368046181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2366e5dd71ef4d5ca1b17534bfb794e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attacker
+  _damage: 5
+  _attackDistance: 1
+  _attackDelay: 1
+--- !u!114 &368046192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368046181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e758f4f006c4a0ab94cb4990eceefcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  _maxValue: 30
+  _currentValue: 0
 --- !u!1 &464689064
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +774,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 997046152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &473697182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 473697184}
+  - component: {fileID: 473697183}
+  m_Layer: 0
+  m_Name: MedkitSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &473697183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473697182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e7ccfb4e4e4813afc52c64244d3577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MedkitSpawner
+  _medkitPrefab: {fileID: 5555778439729378547, guid: a0602d2cb66de814fa60792c13d0c4d4, type: 3}
+  _spawnPoints:
+  - {fileID: 1296277033}
+  - {fileID: 1540032434}
+  - {fileID: 1788486900}
+  _medkitsAmount: 5
+--- !u!4 &473697184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473697182}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.69774, y: -1.6237, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -985,7 +1114,12 @@ GameObject:
   - component: {fileID: 597201836}
   - component: {fileID: 597201835}
   - component: {fileID: 597201839}
-  m_Layer: 0
+  - component: {fileID: 597201844}
+  - component: {fileID: 597201843}
+  - component: {fileID: 597201842}
+  - component: {fileID: 597201841}
+  - component: {fileID: 597201840}
+  m_Layer: 6
   m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,6 +1301,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc12e3e9c494929a64faac4f568d567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectFlipper
+--- !u!114 &597201840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597201833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b054ab4d713b40a1a151f5662e659f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathHandler
+--- !u!114 &597201841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597201833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871be103fb044113b7dd4ad087411716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
+  _player: {fileID: 1124180963}
+  _playerHealth: {fileID: 1124180965}
+  _detector: {fileID: 597201842}
+  _patroller: {fileID: 597201837}
+  _attacker: {fileID: 597201843}
+  _flipper: {fileID: 597201839}
+  _chaseSpeed: 2
+--- !u!114 &597201842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597201833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f085a224bf47b78f3a1e97660ad959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetector
+  _player: {fileID: 1124180963}
+  _detectionDistance: 1
+--- !u!114 &597201843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597201833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2366e5dd71ef4d5ca1b17534bfb794e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attacker
+  _damage: 5
+  _attackDistance: 1
+  _attackDelay: 1
+--- !u!114 &597201844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597201833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e758f4f006c4a0ab94cb4990eceefcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  _maxValue: 30
+  _currentValue: 0
 --- !u!1 &608236486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1690,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 249049999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &828316901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 828316902}
+  m_Layer: 0
+  m_Name: MedkitSpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &828316902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828316901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.69774, y: -1.6237, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1296277033}
+  - {fileID: 1540032434}
+  - {fileID: 1788486900}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &979869857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +1977,10 @@ GameObject:
   - component: {fileID: 1124180955}
   - component: {fileID: 1124180954}
   - component: {fileID: 1124180964}
+  - component: {fileID: 1124180965}
+  - component: {fileID: 1124180968}
+  - component: {fileID: 1124180967}
+  - component: {fileID: 1124180966}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1958,7 +2204,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.11534355, g: 0.9056604, b: 0.14414789, a: 1}
+  m_Color: {r: 0.11372546, g: 0.79555386, b: 0.90588236, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1995,6 +2241,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc12e3e9c494929a64faac4f568d567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectFlipper
+--- !u!114 &1124180965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124180953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e758f4f006c4a0ab94cb4990eceefcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  _maxValue: 100
+  _currentValue: 0
+--- !u!114 &1124180966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124180953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d39e968d1b48df93f84b0155344dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MedkitCollector
+--- !u!114 &1124180967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124180953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f9f8bed09e4ee7bff6899ca94a96e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttacker
+  _inputReader: {fileID: 1124180959}
+  _attacker: {fileID: 1124180968}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _attackRadius: 1
+--- !u!114 &1124180968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124180953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2366e5dd71ef4d5ca1b17534bfb794e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attacker
+  _damage: 10
+  _attackDistance: 1
+  _attackDelay: 0.5
 --- !u!1 &1161679084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,7 +2420,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "A / Left Arrow  \u2192 \u0432\u043B\u0435\u0432\u043E\nD / Right Arrow
-    \u2192 \u0432\u043F\u0440\u0430\u0432\u043E\nSpace           \u2192 \u043F\u0440\u044B\u0436\u043E\u043A"
+    \u2192 \u0432\u043F\u0440\u0430\u0432\u043E\nSpace           \u2192 \u043F\u0440\u044B\u0436\u043E\u043A\nF
+    \u2192 \u0443\u0434\u0430\u0440 \u0438\u0433\u0440\u043E\u043A\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2195,6 +2501,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294391814}
   m_CullTransparentMesh: 1
+--- !u!1 &1296277032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1296277033}
+  m_Layer: 0
+  m_Name: MedkitSpawnPoint_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1296277033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296277032}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.5977402, y: -0.25629997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 828316902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1349421009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,7 +2546,12 @@ GameObject:
   - component: {fileID: 1349421012}
   - component: {fileID: 1349421011}
   - component: {fileID: 1349421015}
-  m_Layer: 0
+  - component: {fileID: 1349421020}
+  - component: {fileID: 1349421019}
+  - component: {fileID: 1349421018}
+  - component: {fileID: 1349421017}
+  - component: {fileID: 1349421016}
+  m_Layer: 6
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2391,6 +2733,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc12e3e9c494929a64faac4f568d567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectFlipper
+--- !u!114 &1349421016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349421009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b054ab4d713b40a1a151f5662e659f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathHandler
+--- !u!114 &1349421017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349421009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871be103fb044113b7dd4ad087411716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
+  _player: {fileID: 1124180963}
+  _playerHealth: {fileID: 1124180965}
+  _detector: {fileID: 1349421018}
+  _patroller: {fileID: 1349421013}
+  _attacker: {fileID: 1349421019}
+  _flipper: {fileID: 1349421015}
+  _chaseSpeed: 2
+--- !u!114 &1349421018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349421009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f085a224bf47b78f3a1e97660ad959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetector
+  _player: {fileID: 1124180963}
+  _detectionDistance: 1
+--- !u!114 &1349421019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349421009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2366e5dd71ef4d5ca1b17534bfb794e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attacker
+  _damage: 5
+  _attackDistance: 1
+  _attackDelay: 1
+--- !u!114 &1349421020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349421009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e758f4f006c4a0ab94cb4990eceefcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  _maxValue: 30
+  _currentValue: 0
 --- !u!1 &1533180095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,6 +2837,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 997046152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1540032433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1540032434}
+  m_Layer: 0
+  m_Name: MedkitSpawnPoint_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1540032434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540032433}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.0422597, y: 2.0637, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 828316902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1560299004
 GameObject:
@@ -2591,6 +3038,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1788486899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1788486900}
+  m_Layer: 0
+  m_Name: MedkitSpawnPoint_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1788486900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788486899}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.287741, y: 1.4637, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 828316902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1811393000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,7 +3083,12 @@ GameObject:
   - component: {fileID: 1811393003}
   - component: {fileID: 1811393002}
   - component: {fileID: 1811393006}
-  m_Layer: 0
+  - component: {fileID: 1811393011}
+  - component: {fileID: 1811393010}
+  - component: {fileID: 1811393009}
+  - component: {fileID: 1811393008}
+  - component: {fileID: 1811393007}
+  m_Layer: 6
   m_Name: Enemy4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2787,6 +3270,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc12e3e9c494929a64faac4f568d567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectFlipper
+--- !u!114 &1811393007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811393000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b054ab4d713b40a1a151f5662e659f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathHandler
+--- !u!114 &1811393008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811393000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871be103fb044113b7dd4ad087411716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
+  _player: {fileID: 1124180963}
+  _playerHealth: {fileID: 1124180965}
+  _detector: {fileID: 1811393009}
+  _patroller: {fileID: 1811393004}
+  _attacker: {fileID: 1811393010}
+  _flipper: {fileID: 1811393006}
+  _chaseSpeed: 2
+--- !u!114 &1811393009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811393000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f085a224bf47b78f3a1e97660ad959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetector
+  _player: {fileID: 1124180963}
+  _detectionDistance: 1
+--- !u!114 &1811393010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811393000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2366e5dd71ef4d5ca1b17534bfb794e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attacker
+  _damage: 5
+  _attackDistance: 1
+  _attackDelay: 1
+--- !u!114 &1811393011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811393000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e758f4f006c4a0ab94cb4990eceefcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  _maxValue: 30
+  _currentValue: 0
 --- !u!1 &1895001341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,5 +3442,7 @@ SceneRoots:
   - {fileID: 997046152}
   - {fileID: 249049999}
   - {fileID: 2057550410}
+  - {fileID: 828316902}
+  - {fileID: 473697184}
   - {fileID: 979869861}
   - {fileID: 71845250}
