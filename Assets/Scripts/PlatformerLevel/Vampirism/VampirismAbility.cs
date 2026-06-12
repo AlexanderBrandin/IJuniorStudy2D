@@ -108,14 +108,4 @@ public class VampirismAbility : MonoBehaviour
         enemyHealth.TakeDamage(_damagePerTick);
         _playerHealth.Heal(_healPerTick);
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-
-        if (_areaPoint != null)
-            Gizmos.DrawWireSphere(_areaPoint.position, _radius);
-        else
-            Gizmos.DrawWireSphere(transform.position, _radius);
-    }
 }
