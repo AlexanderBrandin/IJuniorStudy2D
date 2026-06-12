@@ -6,6 +6,7 @@ public class PlayerInputReader : MonoBehaviour
 {
     public event Action JumpPressed;
     public event Action AttackPressed;
+    public event Action VampirismPressed;
 
     public float HorizontalDirection { get; private set; }
 
@@ -14,6 +15,7 @@ public class PlayerInputReader : MonoBehaviour
         ReadMovement();
         ReadJump();
         ReadAttack();
+        ReadVampirism();
     }
 
     private void ReadMovement()
@@ -45,5 +47,14 @@ public class PlayerInputReader : MonoBehaviour
 
         if (Keyboard.current.fKey.wasPressedThisFrame)
             AttackPressed?.Invoke();
+    }
+
+    private void ReadVampirism()
+    {
+        if (Keyboard.current == null)
+            return;
+
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+            VampirismPressed?.Invoke();
     }
 }
