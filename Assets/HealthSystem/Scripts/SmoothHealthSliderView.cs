@@ -4,26 +4,29 @@ using UnityEngine.UI;
 
 public class SmoothHealthSliderView : MonoBehaviour
 {
-    [SerializeField] private Health _health;
     [SerializeField] private Slider _slider;
     [SerializeField] private float _changeSpeed;
 
+    private Health _health;
     private Coroutine _changingCoroutine;
 
-    private void OnEnable()
+    private void OnDisable()
     {
+        Unsubscribe();
+
+        if (_changingCoroutine != null)
+            StopCoroutine(_changingCoroutine);
+    }
+
+    public void Initialize(Health health)
+    {
+        Unsubscribe();
+
+        _health = health;
         _health.Changed += StartChanging;
 
         float healthRatio = GetHealthRatio();
         _slider.value = healthRatio;
-    }
-
-    private void OnDisable()
-    {
-        _health.Changed -= StartChanging;
-
-        if (_changingCoroutine != null)
-            StopCoroutine(_changingCoroutine);
     }
 
     private void StartChanging()
@@ -50,6 +53,14 @@ public class SmoothHealthSliderView : MonoBehaviour
         }
 
         _changingCoroutine = null;
+    }
+
+    private void Unsubscribe()
+    {
+        if (_health == null)
+            return;
+
+        _health.Changed -= StartChanging;
     }
 
     private float GetHealthRatio()
