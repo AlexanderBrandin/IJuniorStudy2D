@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(VampirismAreaFollower))]
 public class VampirismAreaView : MonoBehaviour
 {
     private const float RadiusToDiameterMultiplier = 2f;

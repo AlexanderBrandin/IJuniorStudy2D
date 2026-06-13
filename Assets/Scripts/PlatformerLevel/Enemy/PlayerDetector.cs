@@ -7,6 +7,9 @@ public class PlayerDetector : MonoBehaviour
 
     public bool CanSeePlayer()
     {
-        return Vector2.Distance(transform.position, _player.position) <= _detectionDistance;
+        Vector2 currentPosition = transform.position;
+        Vector2 playerPosition = _player.position;
+
+        return currentPosition.IsEnoughClose(playerPosition, _detectionDistance);
     }
 }

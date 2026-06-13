@@ -13,7 +13,7 @@ public class EnemyFinder : MonoBehaviour
         if (colliders.Length == 0)
             return false;
 
-        float nearestDistance = float.MaxValue;
+        float nearestSqrDistance = float.MaxValue;
 
         foreach (Collider2D collider in colliders)
         {
@@ -23,11 +23,12 @@ public class EnemyFinder : MonoBehaviour
             if (health.IsAlive == false)
                 continue;
 
-            float distance = Vector2.Distance(center, collider.transform.position);
+            Vector2 enemyPosition = collider.transform.position;
+            float sqrDistance = center.SqrDistance(enemyPosition);
 
-            if (distance < nearestDistance)
+            if (sqrDistance < nearestSqrDistance)
             {
-                nearestDistance = distance;
+                nearestSqrDistance = sqrDistance;
                 enemyHealth = health;
             }
         }

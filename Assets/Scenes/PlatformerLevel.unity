@@ -2407,13 +2407,14 @@ GameObject:
   - component: {fileID: 1124180956}
   - component: {fileID: 1124180955}
   - component: {fileID: 1124180954}
+  - component: {fileID: 1124180973}
   - component: {fileID: 1124180964}
   - component: {fileID: 1124180965}
   - component: {fileID: 1124180968}
   - component: {fileID: 1124180967}
-  - component: {fileID: 1124180966}
   - component: {fileID: 1124180969}
   - component: {fileID: 1124180971}
+  - component: {fileID: 1124180972}
   - component: {fileID: 1124180970}
   m_Layer: 0
   m_Name: Player
@@ -2431,9 +2432,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1124180953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ac92cfe28f84fd8b0728728bf9914eb, type: 3}
+  m_Script: {fileID: 11500000, guid: a7e2b3e91109407cbd21ac21ed0af4e2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinCollector
+  m_EditorClassIdentifier: Assembly-CSharp::ItemCollector
+--- !u!114 &1124180973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124180953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a5f7f3f9c7481e871b31c5674d66df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MedkitHealingHandler
 --- !u!114 &1124180955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2691,18 +2704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _maxValue: 100
   _currentValue: 0
---- !u!114 &1124180966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124180953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d39e968d1b48df93f84b0155344dd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MedkitCollector
 --- !u!114 &1124180967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2781,14 +2782,26 @@ MonoBehaviour:
   _playerHealth: {fileID: 1124180965}
   _enemyFinder: {fileID: 1124180970}
   _areaView: {fileID: 573491661}
-  _progressView: {fileID: 1973271373}
+  _cooldown: {fileID: 1124180972}
   _areaPoint: {fileID: 1261479946}
   _radius: 1.5
   _duration: 6
-  _cooldown: 4
   _tickDelay: 0.25
   _damagePerTick: 2
   _healPerTick: 2
+--- !u!114 &1124180972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124180953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6029563a4f1d45d69a14eb455fb6cc8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cooldown
+  _duration: 4
 --- !u!1 &1161679084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4010,6 +4023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f0536b54eb433e857659218860745c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VampirismProgressView
+  _ability: {fileID: 1124180971}
+  _cooldown: {fileID: 1124180972}
   _slider: {fileID: 1973271374}
 --- !u!114 &1973271374
 MonoBehaviour:

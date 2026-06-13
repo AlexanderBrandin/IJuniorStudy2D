@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da3c5187d01435ba820b18e4370391b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Medkit
-  _healValue: 20
+  _value: 20

@@ -18,15 +18,15 @@ public class MedkitSpawner : MonoBehaviour
             Transform spawnPoint = GetRandomSpawnPoint();
             Medkit medkit = Instantiate(_medkitPrefab, spawnPoint.position, Quaternion.identity);
 
-            medkit.Collected += RemoveMedkit;
+            medkit.Collected += RemoveItem;
         }
     }
 
-    private void RemoveMedkit(Medkit medkit)
+    private void RemoveItem(CollectableItem item)
     {
-        medkit.Collected -= RemoveMedkit;
+        item.Collected -= RemoveItem;
 
-        Destroy(medkit.gameObject);
+        Destroy(item.gameObject);
     }
 
     private Transform GetRandomSpawnPoint()

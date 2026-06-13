@@ -41,7 +41,10 @@ public class Attacker : MonoBehaviour
 
     public bool IsTargetClose(Transform target)
     {
-        return Vector2.Distance(transform.position, target.position) <= _attackDistance;
+        Vector2 currentPosition = transform.position;
+        Vector2 targetPosition = target.position;
+
+        return currentPosition.IsEnoughClose(targetPosition, _attackDistance);
     }
 
     private IEnumerator Attacking(Health target)

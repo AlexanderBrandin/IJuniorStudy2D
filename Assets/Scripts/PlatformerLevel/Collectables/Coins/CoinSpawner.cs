@@ -37,14 +37,14 @@ public class CoinSpawner : MonoBehaviour
         Transform spawnPoint = GetRandomSpawnPoint();
         Coin coin = Instantiate(_coinPrefab, spawnPoint.position, Quaternion.identity);
 
-        coin.Collected += RemoveCoin;
+        coin.Collected += RemoveItem;
     }
 
-    private void RemoveCoin(Coin coin)
+    private void RemoveItem(CollectableItem item)
     {
-        coin.Collected -= RemoveCoin;
+        item.Collected -= RemoveItem;
 
-        Destroy(coin.gameObject);
+        Destroy(item.gameObject);
     }
 
     private Transform GetRandomSpawnPoint()

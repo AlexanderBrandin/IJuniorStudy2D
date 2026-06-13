@@ -1,24 +1,27 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class VampirismAbility : MonoBehaviour
 {
+    public event Action Started;
+    public event Action Finished;
+    public event Action<float> ProgressChanged;
+
     [SerializeField] private PlayerInputReader _inputReader;
     [SerializeField] private Health _playerHealth;
     [SerializeField] private EnemyFinder _enemyFinder;
     [SerializeField] private VampirismAreaView _areaView;
-    [SerializeField] private VampirismProgressView _progressView;
+    [SerializeField] private Cooldown _cooldown;
     [SerializeField] private Transform _areaPoint;
 
     [SerializeField] private float _radius;
     [SerializeField] private float _duration;
-    [SerializeField] private float _cooldown;
     [SerializeField] private float _tickDelay;
     [SerializeField] private int _damagePerTick;
     [SerializeField] private int _healPerTick;
 
     private bool _isActive;
-    private bool _isOnCooldown;
     private Coroutine _abilityCoroutine;
 
     private void Start()
@@ -41,7 +44,10 @@ public class VampirismAbility : MonoBehaviour
 
     private void TryActivate()
     {
-        if (_isActive || _isOnCooldown)
+        if (_isActive)
+            return;
+
+        if (_cooldown.IsReady == false)
             return;
 
         _abilityCoroutine = StartCoroutine(UsingAbility());
@@ -50,7 +56,9 @@ public class VampirismAbility : MonoBehaviour
     private IEnumerator UsingAbility()
     {
         _isActive = true;
+
         _areaView.Show();
+        Started?.Invoke();
 
         float elapsedTime = 0f;
         float tickTimer = 0f;
@@ -67,37 +75,18 @@ public class VampirismAbility : MonoBehaviour
             }
 
             float progress = 1f - elapsedTime / _duration;
-            _progressView.SetProgress(progress);
+            ProgressChanged?.Invoke(progress);
 
             yield return null;
         }
 
         _areaView.Hide();
+
         _isActive = false;
+        Finished?.Invoke();
 
-        yield return StartCoroutine(Cooldown());
-
+        _cooldown.StartCooldown();
         _abilityCoroutine = null;
-    }
-
-    private IEnumerator Cooldown()
-    {
-        _isOnCooldown = true;
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < _cooldown)
-        {
-            elapsedTime += Time.deltaTime;
-
-            float progress = elapsedTime / _cooldown;
-            _progressView.SetProgress(progress);
-
-            yield return null;
-        }
-
-        _progressView.SetReady();
-        _isOnCooldown = false;
     }
 
     private void ApplyVampirism()
@@ -107,5 +96,15 @@ public class VampirismAbility : MonoBehaviour
 
         enemyHealth.TakeDamage(_damagePerTick);
         _playerHealth.Heal(_healPerTick);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        if (_areaPoint != null)
+            Gizmos.DrawWireSphere(_areaPoint.position, _radius);
+        else
+            Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }
